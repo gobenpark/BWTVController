@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BWTVController_Example' do
+  pod 'BWTVController', :path => '../'
+
+  target 'BWTVController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
