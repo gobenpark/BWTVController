@@ -30,6 +30,8 @@ open class BWTVHeaderView: UIView {
     
     open var expandState: expandType = .reduce
     open var childRows: Int?
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .gray

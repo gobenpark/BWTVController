@@ -23,14 +23,19 @@ import UIKit
 
 open class BWTVController: UITableViewController {
     
-    //MARK: - Property
+    
+    //MARK: - Delegate & DataSource
     
     open var headerView: BWTVHeaderView?
     open var headerViews: [BWTVHeaderView]?
     
-    open var sectionsRowCount: Int?
+    //MARK: - Property
+    
+    
     open var heightForRowAt: CGFloat?
     open var heightForHeaderInSection: CGFloat?
+    open var tableViewEventType: UITableViewRowAnimation = .fade
+    open var isTopSectionDisplay: Bool = true
     
     var delegate: BWTVControllerDelegate?
     var dataSource: BWTVControllerDataSource?
@@ -40,6 +45,7 @@ open class BWTVController: UITableViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        print(isTopSectionDisplay)
     }
     
     
@@ -47,18 +53,18 @@ open class BWTVController: UITableViewController {
     //MARK: - Header Tap Action
     open func tapCellAction(_ sender: UITapGestureRecognizer){
         if let tapHeaderView = sender.view as? BWTVHeaderView{
-            
-            if  tapHeaderView.expandState == expandType.reduce {
+            switch tapHeaderView.expandState {
+            case .reduce:
                 tapHeaderView.expandState = expandType.expand
-            }
-            else {
+            case .expand:
                 tapHeaderView.expandState = expandType.reduce
+            default:
+                break
             }
-            
-            self.tableView.reloadSections(IndexSet(integer: tapHeaderView.tag), with: .fade)
+            self.tableView.reloadSections(IndexSet(integer: tapHeaderView.tag),
+                                          with: tableViewEventType)
         }
     }
-    
 }
 
 
@@ -72,17 +78,15 @@ extension BWTVController {
     
     open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let expandStateCheck: expandType = headerViews?[section].expandState ?? .reduce
-        return expandStateCheck == .reduce ? 0 : headerViews![section].childRows ?? 0
-        
-        //return self.delegate?.tableView(tableView, numberOfRowsInSection: section) ?? 0
+        return expandStateCheck == .reduce ? 0 : headerViews?[section].childRows ?? 0
     }
     
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         return self.delegate?.tableView(tableView, cellForRowAt: indexPath) ?? UITableViewCell()
     }
     
     override open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let headerView = headerViews?[section]
         headerView?.tag = section
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapCellAction(_:)))
@@ -90,7 +94,6 @@ extension BWTVController {
         headerView?.addGestureRecognizer(tap)
         return headerView
     }
-
 }
 
 //MARK: - TableViewDataSource
@@ -98,18 +101,22 @@ extension BWTVController {
 extension BWTVController{
     override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.dataSource == nil {
-        return self.heightForRowAt ?? 0
+            return self.heightForRowAt ?? 0
         }
         return dataSource?.tableView(tableView, heightForRowAt: indexPath) ?? 0
     }
     
     override open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.dataSource == nil {
-        return self.heightForHeaderInSection ?? 0
+            if isTopSectionDisplay == false && section == 0 {
+                return 0
+            } else {
+                return self.heightForHeaderInSection ?? 0
+            }
         }
         return dataSource?.tableView(tableView, heightForHeaderInSection: section) ?? 0
     }
     
-   
+    
 }
 

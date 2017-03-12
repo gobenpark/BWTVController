@@ -21,18 +21,19 @@ class ViewController: BWTVController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var myview : [BWTVHeaderView] = [BWTVHeaderView]()
+        self.headerViews = [BWTVHeaderView]()
         
         for _ in 1..<5{
             let headerview = BWTVHeaderView()
             headerview.expandState = .expand
-            myview.append(headerview)
+            headerview.childRows = 2
+            self.headerViews?.append(headerview)
         }
         
         self.tableView.register(DemoTableViewCell.self, forCellReuseIdentifier: cellid)
         self.heightForRowAt = 100
         self.heightForHeaderInSection = 50
-        self.headerViews = myview
+        self.isTopSectionDisplay = true
     }
     
     

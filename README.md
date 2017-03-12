@@ -10,7 +10,8 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+
+
 
 ## Installation
 
@@ -20,6 +21,46 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "BWTVController"
 ```
+
+## Start
+
+BWTVController needs BWTVHeaderView array
+
+```swift
+self.headerViews = [BWTVHeaderView]()
+```
+
+and BWTVHeaderView need to expandState
+```swift
+let headerview = BWTVHeaderView()
+headerview.expandState = .expand
+```
+or
+```swift
+headerview.expandState = .reduce
+```
+
+easy way to use the code is write bottom code
+```swift
+
+for _ in 1..<5{
+    let headerview = BWTVHeaderView()
+    headerview.expandState = .expand
+    headerview.childRows = 2
+    self.headerViews?.append(headerview)
+}
+
+```   
+
+and manipulate section height  and heightForRow
+ex)
+```swift
+self.heightForRowAt = 100
+self.heightForHeaderInSection = 50
+```
+
+if you don't want to display top section `isTopSectionDisplay` set `false`
+
 
 ## Author
 
