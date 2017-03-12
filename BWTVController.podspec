@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'BWTVController/Classes/**/*'
+  s.source_files = 'BWTVController/Classes/*.swift'
   
   # s.resource_bundles = {
   #   'BWTVController' => ['BWTVController/Assets/*.png']
