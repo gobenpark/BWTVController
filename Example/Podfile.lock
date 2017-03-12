@@ -1,0 +1,16 @@
+PODS:
+  - BWTVController (0.1.0)
+
+DEPENDENCIES:
+  - BWTVController (from `../`)
+
+EXTERNAL SOURCES:
+  BWTVController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BWTVController: 60fe42de173f50ee118177b5b7925871df3866e7
+
+PODFILE CHECKSUM: e3f2daf84c6c620b447f8b666411a5a1df4897eb
+
+COCOAPODS: 1.2.1.beta.1

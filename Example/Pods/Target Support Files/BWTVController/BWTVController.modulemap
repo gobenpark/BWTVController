@@ -1,0 +1,6 @@
+framework module BWTVController {
+  umbrella header "BWTVController-umbrella.h"
+
+  export *
+  module * { export * }
+}

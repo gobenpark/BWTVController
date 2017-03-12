@@ -1,0 +1,6 @@
+framework module Pods_BWTVController_Example {
+  umbrella header "Pods-BWTVController_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

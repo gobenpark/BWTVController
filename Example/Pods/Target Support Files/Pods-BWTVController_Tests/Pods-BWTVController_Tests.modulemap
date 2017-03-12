@@ -1,0 +1,6 @@
+framework module Pods_BWTVController_Tests {
+  umbrella header "Pods-BWTVController_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
