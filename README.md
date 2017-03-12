@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/BWTVController.svg?style=flat)](http://cocoapods.org/pods/BWTVController)
 [![Platform](https://img.shields.io/cocoapods/p/BWTVController.svg?style=flat)](http://cocoapods.org/pods/BWTVController)
 
-![](Example/ezgif.com-resize.gif)
+![](https://github.com/qkrqjadn/BWTVController/blob/master/ezgif.com-resize.gif)
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
