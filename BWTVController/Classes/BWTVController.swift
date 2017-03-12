@@ -72,7 +72,7 @@ extension BWTVController {
     
     open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let expandStateCheck: expandType = headerViews?[section].expandState ?? .reduce
-        return expandStateCheck == .reduce ? 0 : 2
+        return expandStateCheck == .reduce ? 0 : headerViews![section].childRows ?? 0
         
         //return self.delegate?.tableView(tableView, numberOfRowsInSection: section) ?? 0
     }
