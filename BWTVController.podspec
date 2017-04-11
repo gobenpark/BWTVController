@@ -8,11 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BWTVController'
-<<<<<<< HEAD
-  s.version          = '0.1.5'
-=======
-  s.version          = '0.1.4'
->>>>>>> ccfee889bb04f16d8dddc3a524bc72ae90aaa49f
+  s.version          = '0.1.6'
   s.summary          = 'Expand TableViewCell to short!!'
 
 # This description is used to generate tags and improve search results.
