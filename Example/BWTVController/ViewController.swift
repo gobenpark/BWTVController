@@ -25,7 +25,7 @@ class ViewController: BWTVController {
         
         for _ in 1..<5{
             let headerview = BWTVHeaderView()
-            headerview.expandState = .expand
+            headerview.expandState = .reduce
             headerview.childRows = 2
             self.headerViews?.append(headerview)
         }

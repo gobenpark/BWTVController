@@ -28,13 +28,36 @@ public enum expandType {
 
 open class BWTVHeaderView: UIView {
     
-    open var expandState: expandType = .reduce
+    open var arrowImg: UIImageView = {
+        var img = UIImageView()
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
+    
+    open var expandState: expandType = .reduce{
+        didSet{
+            UIView.animate(withDuration: 0.2) {
+                if self.expandState == .reduce{
+                    self.arrowImg.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/180))
+                } else {
+                    self.arrowImg.transform = CGAffineTransform(rotationAngle: CGFloat(-180 * Double.pi/180) )
+                }
+            }
+        }
+    }
     open var childRows: Int?
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .gray
+        self.addSubview(arrowImg)
+        
+        if #available(iOS 9.0, *) {
+            self.arrowImg.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+            self.arrowImg.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
